@@ -8,7 +8,7 @@ const getStudentElement = (student) => {
   return `<li class="student ${obtained ? "obtained" : ""}">
   <label>
     <input type="checkbox" ${obtained ? "checked" : ""} />
-  <div class="student-name">${studentInfo.name} (${studentInfo.club})</div>
+    <div class="student-name">${studentInfo.name} (${studentInfo.club})</div>
   </label>
   <div>
     <input
@@ -19,7 +19,7 @@ const getStudentElement = (student) => {
       aria-label="획득 엘레프 개수"
       placeholder="획득 엘레프 개수"
     />
-    / 120
+    <span>/ 120</span>
   </div>
   <button>삭제</button>
 </li>`;

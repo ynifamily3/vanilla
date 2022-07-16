@@ -73,4 +73,44 @@ const render = () => {
   });
 };
 
+window.go = () => {
+  const r = Math.random();
+  state.currentFilter =
+    r > 0.666 ? "all" : r > 0.333 ? "not-recruited" : "recruited";
+
+  state.students = [
+    {
+      id: 1,
+      eleph: Math.floor(Math.random() * 120) + 1,
+      obtained: Math.random() > 0.5,
+    },
+    {
+      id: 2,
+      eleph: Math.floor(Math.random() * 120) + 1,
+      obtained: Math.random() > 0.5,
+    },
+    {
+      id: 3,
+      eleph: Math.floor(Math.random() * 120) + 1,
+      obtained: Math.random() > 0.5,
+    },
+    {
+      id: 4,
+      eleph: Math.floor(Math.random() * 120) + 1,
+      obtained: Math.random() > 0.5,
+    },
+    {
+      id: 5,
+      eleph: Math.floor(Math.random() * 120) + 1,
+      obtained: Math.random() > 0.5,
+    },
+    {
+      id: 6,
+      eleph: Math.floor(Math.random() * 120) + 1,
+      obtained: Math.random() > 0.5,
+    },
+  ];
+  render();
+};
+
 render();

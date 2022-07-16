@@ -42,12 +42,12 @@ const applyDiff = (parentNode, realNode, virtualNode) => {
 
   if (isNodeChanged(virtualNode, realNode)) {
     realNode.replaceWith(virtualNode);
+    return;
   }
 
   // children에 대해 적용
   const realChildren = Array.from(realNode.children);
   const virtualChildren = Array.from(virtualNode.children);
-
   const max = Math.max(realChildren.length, virtualChildren.length);
 
   for (let i = 0; i < max; i++) {
