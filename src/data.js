@@ -1,0 +1,51 @@
+export const STUDENTS = [
+  {
+    id: 1,
+    academy: "아비도스",
+    dept: "아비도스 고등학교",
+    club: "대책위원회",
+    name: "시로코",
+  },
+  {
+    id: 2,
+    academy: "아비도스",
+    dept: "아비도스 고등학교",
+    club: "대책위원회",
+    name: "호시노",
+  },
+  {
+    id: 3,
+    academy: "아비도스",
+    dept: "아비도스 고등학교",
+    club: "대책위원회",
+    name: "세리카",
+  },
+  {
+    id: 4,
+    academy: "아비도스",
+    dept: "아비도스 고등학교",
+    club: "대책위원회",
+    name: "노노미",
+  },
+  {
+    id: 5,
+    academy: "아비도스",
+    dept: "아비도스 고등학교",
+    club: "대책위원회",
+    name: "아야네",
+  },
+  {
+    id: 6,
+    academy: "게헨나",
+    dept: "게헨나 학원",
+    club: "흥신소68",
+    name: "아루",
+  },
+  {
+    id: 7,
+    academy: "트리니티",
+    dept: "트리니티 종합학원",
+    club: "보충수업부",
+    name: "히후미",
+  },
+];

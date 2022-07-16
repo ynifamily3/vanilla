@@ -1,4 +1,4 @@
-import { STUDENTS } from "../main";
+import { STUDENTS } from "../data.js";
 
 let template;
 
@@ -10,7 +10,7 @@ const createNewStudentNode = () => {
   return template.content.firstElementChild.cloneNode(true);
 };
 
-const getStudentElement = (student) => {
+const getStudentElement = (student, events) => {
   const { id, eleph, obtained } = student;
   const studentInfo = STUDENTS.find((v) => v.id === id);
   if (!studentInfo) return `<li>error</li>`;
@@ -21,6 +21,9 @@ const getStudentElement = (student) => {
   const checkbox = element.querySelector(".checkbox");
   const studentName = element.querySelector(".student-name");
   const elephInput = element.querySelector(".input");
+  const deleteButton = element.querySelector(".delete");
+  // deleteButton.textContent = `삭제 (${id})`;
+
   if (obtained) {
     li.classList.add("obtained");
     checkbox.checked = true;
@@ -28,14 +31,21 @@ const getStudentElement = (student) => {
   studentName.textContent = `${studentInfo.name} (${studentInfo.club})`;
   elephInput.value = String(eleph);
 
+  const handler = (e) => {
+    console.log("삭제 핸들러 실행", id, studentInfo);
+    events.deleteStudent(id);
+  };
+
+  deleteButton.addEventListener("click", handler);
+
   return element;
 };
 
-export default (targetElement, { students }) => {
+export default (targetElement, { students }, events) => {
   const newStudentList = targetElement.cloneNode(true);
   newStudentList.innerHTML = "";
   students
-    .map(getStudentElement)
+    .map((student) => getStudentElement(student, events))
     .forEach((element) => newStudentList.appendChild(element));
   return newStudentList;
 };
