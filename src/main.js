@@ -25,7 +25,6 @@ const state = {
 
 const events = {
   deleteStudent: (id) => {
-    console.log("학생 삭제:", id);
     const idx = state.students.findIndex((item) => item.id === id);
     if (idx === -1) return;
     state.students.splice(idx, 1);
@@ -41,6 +40,24 @@ const events = {
       eleph: 0,
       obtained: false,
     });
+
+    render();
+  },
+  toggleStudent: (id) => {
+    const student = state.students.find((item) => item.id === id);
+    if (!student) return;
+    student.obtained = !student.obtained;
+
+    render();
+  },
+  changeEleph: (id, eleph) => {
+    const student = state.students.find((item) => item.id === id);
+    if (!student) return;
+    student.eleph = eleph;
+    // 포커스 잃어버리는 문제 -> 렌더링 엔진을 좀 더 정교하게 하면 해결됨. (attribute 만 바꾼다든지..)
+    if (eleph >= 120) {
+      student.obtained = true;
+    }
 
     render();
   },
