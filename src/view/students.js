@@ -1,33 +1,41 @@
 import { STUDENTS } from "../main";
 
+let template;
+
+const createNewStudentNode = () => {
+  if (!template) {
+    template = document.getElementById("student-item");
+  }
+
+  return template.content.firstElementChild.cloneNode(true);
+};
+
 const getStudentElement = (student) => {
   const { id, eleph, obtained } = student;
   const studentInfo = STUDENTS.find((v) => v.id === id);
   if (!studentInfo) return `<li>error</li>`;
 
-  return `<li class="student ${obtained ? "obtained" : ""}">
-  <label>
-    <input type="checkbox" ${obtained ? "checked" : ""} />
-    <div class="student-name">${studentInfo.name} (${studentInfo.club})</div>
-  </label>
-  <div>
-    <input
-      type="text"
-      value="${eleph}"
-      pattern="^[1-9]{1}[0-9]*$"
-      inputmode="numeric"
-      aria-label="획득 엘레프 개수"
-      placeholder="획득 엘레프 개수"
-    />
-    <span>/ 120</span>
-  </div>
-  <button>삭제</button>
-</li>`;
+  const element = createNewStudentNode();
+  // querySelector 자체는 root가 잡히지 않고 자식만 잡힌다.
+  const li = element; // element.querySelector(".student"); (not working)
+  const checkbox = element.querySelector(".checkbox");
+  const studentName = element.querySelector(".student-name");
+  const elephInput = element.querySelector(".input");
+  if (obtained) {
+    li.classList.add("obtained");
+    checkbox.checked = true;
+  }
+  studentName.textContent = `${studentInfo.name} (${studentInfo.club})`;
+  elephInput.value = String(eleph);
+
+  return element;
 };
 
 export default (targetElement, { students }) => {
   const newStudentList = targetElement.cloneNode(true);
-  const studentsElements = students.map(getStudentElement).join("");
-  newStudentList.innerHTML = studentsElements;
+  newStudentList.innerHTML = "";
+  students
+    .map(getStudentElement)
+    .forEach((element) => newStudentList.appendChild(element));
   return newStudentList;
 };

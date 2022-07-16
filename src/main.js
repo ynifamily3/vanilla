@@ -1,9 +1,11 @@
+import appView from "./view/app.js";
 import studentsView from "./view/students.js";
 import counterView from "./view/counter.js";
 import filtersView from "./view/filters.js";
 import applyDiff from "./applyDiff.js";
 import registry from "./registry.js";
 
+registry.add("app", appView);
 registry.add("students", studentsView);
 registry.add("counter", counterView);
 registry.add("filters", filtersView);
@@ -67,7 +69,7 @@ const state = {
 
 const render = () => {
   window.requestAnimationFrame(() => {
-    const main = document.querySelector(".app");
+    const main = document.querySelector("#root");
     const newMain = registry.renderRoot(main, state);
     applyDiff(document.body, main, newMain);
   });
