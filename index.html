@@ -1,13 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="stylesheet" href="./style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <title>블루 아카이브 학생부</title>
   </head>
   <body>
-    <div id="app"></div>
-    <script type="module" src="/main.js"></script>
+    <div class="app">
+      <header>
+        <h1>블루 아카이브 학생 모집 현황판</h1>
+      </header>
+      <main>
+        <input type="text" placeholder="학생 이름 입력" />
+        <ul class="student-list" data-component="students"></ul>
+      </main>
+      <footer>
+        <div>
+          희망 학생 모집
+          <code class="student-count" data-component="counter">0</code>명 남음
+        </div>
+        <ul class="filters" data-component="filters">
+          <li>
+            <a href="#/" class="all">전부</a>
+          </li>
+          <li>
+            <a href="#/not-recruited" class="not-recruited">아직 모집 안 됨</a>
+          </li>
+          <li>
+            <a href="#/recruited" class="recruited">모집 완료</a>
+          </li>
+        </ul>
+      </footer>
+    </div>
+    <script type="module" src="/src/main.js"></script>
   </body>
 </html>
