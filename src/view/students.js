@@ -44,16 +44,24 @@ const getStudentElement = (student, events) => {
 
 export default (targetElement, state, events) => {
   const { students } = state;
-  const { deleteStudent, toggleStudent } = events;
+  const { deleteStudent, toggleStudent, showModal } = events;
   const newStudentList = targetElement.cloneNode(true);
   newStudentList.innerHTML = "";
   students
     .map((student) => getStudentElement(student, events))
     .forEach((element) => newStudentList.appendChild(element));
 
-  newStudentList.addEventListener("click", (e) => {
+  newStudentList.addEventListener("click", async (e) => {
     if (e.target.matches("button.delete")) {
-      deleteStudent(Number(e.target.dataset.student_id));
+      const currentStudentId = Number(e.target.dataset.student_id);
+      const targetStudent = STUDENTS.find(
+        (item) => item.id === currentStudentId
+      );
+      const result = await showModal(
+        "잠깐만!",
+        `정말로 ${targetStudent.name} 학생을 리스트에서 삭제하시겠습니까?`
+      );
+      if (result === true) deleteStudent(Number(e.target.dataset.student_id));
     }
   });
 

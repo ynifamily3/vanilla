@@ -8,8 +8,17 @@
     <title>블루 아카이브 학생부</title>
   </head>
   <body>
-    <template id="custom-alert">
-      <div class="modal-wrapper"></div>
+    <template id="custom-confirm">
+      <div class="modal-wrapper hidden">
+        <div class="modal">
+          <strong class="modal-title">title</strong>
+          <div class="modal-description">body</div>
+          <div class="modal-control">
+            <button class="no">아니오</button>
+            <button class="yes">예</button>
+          </div>
+        </div>
+      </div>
     </template>
     <template id="student-item">
       <li class="student">
@@ -61,6 +70,7 @@
             </li>
           </ul>
         </footer>
+        <div data-component="custom-confirm"></div>
       </div>
     </template>
     <div id="root">

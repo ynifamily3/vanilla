@@ -3,6 +3,7 @@ import appView from "./view/app.js";
 import studentsView from "./view/students.js";
 import counterView from "./view/counter.js";
 import filtersView from "./view/filters.js";
+import customConfirmView from "./view/customConfirm.js";
 import applyDiff from "./applyDiff.js";
 import registry from "./registry.js";
 
@@ -10,6 +11,7 @@ registry.add("app", appView);
 registry.add("students", studentsView);
 registry.add("counter", counterView);
 registry.add("filters", filtersView);
+registry.add("custom-confirm", customConfirmView);
 
 const state = {
   students: [
@@ -21,6 +23,11 @@ const state = {
     { id: 6, eleph: 77, obtained: true },
   ],
   currentFilter: "all", // all, not-recruited, recruited
+  modal: {
+    isOpen: false,
+    title: "{제목}",
+    description: "{내용}",
+  },
 };
 
 const events = {
@@ -60,6 +67,27 @@ const events = {
     }
 
     render();
+  },
+  showModal: async (title, description) => {
+    state.modal.isOpen = true;
+    state.modal.title = title;
+    state.modal.description = description;
+
+    render();
+
+    return await new Promise((resolve) => {
+      const handleModalControlEvent = (e) => {
+        window.removeEventListener(
+          "customModalResult",
+          handleModalControlEvent
+        );
+        state.modal.isOpen = false;
+
+        render();
+        resolve(e.detail.answer);
+      };
+      window.addEventListener("customModalResult", handleModalControlEvent);
+    });
   },
 };
 
