@@ -11,7 +11,7 @@ const createNewStudentNode = () => {
 };
 
 const getStudentElement = (student, events) => {
-  const { id, eleph, obtained } = student;
+  const { id, eleph, obtained, image } = student;
   const studentInfo = STUDENTS.find((v) => v.id === id);
   if (!studentInfo) return `<li>error</li>`;
 
@@ -19,9 +19,13 @@ const getStudentElement = (student, events) => {
   // querySelector 자체는 root가 잡히지 않고 자식만 잡힌다.
   const li = element; // element.querySelector(".student"); (not working)
   const checkbox = element.querySelector(".checkbox");
+  const img = element.querySelector(".student-image");
   const studentName = element.querySelector(".student-name");
   const elephInput = element.querySelector(".input");
   const deleteButton = element.querySelector(".delete");
+
+  img.src = studentInfo.image;
+
   // 렌더링 최적화로 인해, 이벤트 리스너가 다름에도 불구하고 같은 DOM으로 인식하는 버그가 있었음.
   // 해결: deleteButton에 추적용 ID를 달아 놓는다. 이것은 새로 렌더링 되어야만 한다!
   deleteButton.dataset["student_id"] = id;

@@ -8,13 +8,17 @@
     <title>블루 아카이브 학생부</title>
   </head>
   <body>
+    <template id="custom-alert">
+      <div class="modal-wrapper"></div>
+    </template>
     <template id="student-item">
       <li class="student">
         <label>
           <input class="checkbox" type="checkbox" />
+          <img class="student-image" width="64" height="64" />
           <div class="student-name"></div>
         </label>
-        <div>
+        <div class="student-control">
           <input
             class="input"
             type="text"

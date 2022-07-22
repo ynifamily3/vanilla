@@ -4,6 +4,7 @@
 }
 .student > label {
   display: flex;
+  align-items: center;
 }
 
 .student-list {
@@ -12,6 +13,17 @@
 
 .student-list > li + li {
   margin-top: 0.5rem;
+}
+
+.student-control {
+  display: flex;
+  align-items: center;
+}
+
+.student-image {
+  object-fit: cover;
+  border: 3px solid black;
+  margin: auto 1rem;
 }
 
 .student.obtained .student-name {
@@ -36,4 +48,8 @@
 .filters > li > a.selected {
   padding: 0.5rem;
   border: 1px solid brown;
+}
+
+.delete {
+  width: 64px;
 }
